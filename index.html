@@ -1,0 +1,5212 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Metadata about the presentation -->
+    <meta charset="utf-8">
+
+    <title>revelation</title>
+
+    <meta name="description" content="A revelation example presentation">
+    <meta name="author" content="Humberto Rocha">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <!-- Presentation Styles -->
+    <link rel="stylesheet" href="static/revealjs/css/reveal.css">
+
+    
+      <link rel="stylesheet" href="static/revealjs/css/theme/black.css" id="theme">
+    
+
+    
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="static/revealjs/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? "static/revealjs/css/print/pdf.css" : "static/revealjs/css/print/paper.css";
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="static/revealjs/lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    
+
+    <!-- Presentation body -->
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+            <section>
+              <section data-background-image="media/tibame_2.png" data-background-size="100%"></section>
+              <section data-background-image="media/tibame_4.png" data-background-size="100%"></section>
+              <section data-background-image="media/tibame_5.png" data-background-size="100%"></section>
+              <section data-background-image="media/tibame_6.png" data-background-size="100%"></section>
+              <section data-background-image="media/tibame_7.png" data-background-size="100%"></section>
+            </section>
+          
+            <section>
+                <section data-background-image="media/outline_1.png" data-background-size="100%"></section>
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    # Azure 與 Azure 認知服務
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## Azure 與 Azure 認知服務
+- Azure
+  - 微軟的公用雲端服務平台
+- Azure 認知服務
+  - 透過 API 或 SDK 提供 AI 服務
+  - 分為五大類：
+
+![](media/azure_cognitive.png)
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## Azure 帳號申請
+
+1. 進入https://login.microsoftonline.com/
+2. 可以用 outlook 、 hotmail或其他email建立帳戶
+3. 驗證email及真人身份
+4. 進入https://azure.microsoft.com/
+5. 按下*開始免費使用*
+6. 填妥信用卡資訊
+   - 免費使用階段不扣款，主動升級才會扣款
+   - 一開始可免費使用30天，並有大約100美金的credit
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## Azure CLI 安裝
+
+- 官方文件：
+  - https://docs.microsoft.com/zh-tw/cli/azure/install-azure-cli
+- 在 Ubuntu 上安裝 Azure CLI
+
+```
+# 更新並安裝必要的套件
+sudo apt-get update
+sudo apt-get install ca-certificates \
+curl apt-transport-https lsb-release gnupg
+
+# 下載並安裝Microsoft signing key
+curl -sL https://packages.microsoft.com/keys/microsoft.asc |
+    gpg --dearmor |
+    sudo tee /etc/apt/trusted.gpg.d/microsoft.gpg > /dev/null
+```
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+- 在 Ubuntu 上安裝 Azure CLI
+
+```bash
+
+# 新增Azure CLI software repository
+AZ_REPO=$(lsb_release -cs)
+AZ_URL=https://packages.microsoft.com/repos/azure-cli/
+echo "deb [arch=amd64] $AZ_URL $AZ_REPO main" | 
+sudo tee /etc/apt/sources.list.d/azure-cli.list
+
+# 再次更新並安裝azure-cli
+sudo apt-get update
+sudo apt-get install azure-cli
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 登入Azure
+
+```
+az login
+```
+![](media/azure_login.png)
+- 會出現一串代碼
+- 進入https://aka.ms/devicelogin 
+- 輸入上述代碼
+- 選擇自己的帳戶登入
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 選擇語言
+
+- 進入https://portal.azure.com/
+- 點選右上角的*設定* (齒輪圖示)
+- 依照使用習慣選擇語言
+  - 建議中文和英文對照著使用
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 資源群組 (Resource Group) 和 資源 (Resource)
+
+- 資源 - Azure 所提供的服務，例如：電腦視覺服務 、 Web APP 、 Azure machine learning
+- 資源群組 - 存放 Azure 解決方案的相關資源的容器。建議把相關的資源放在同一個資源群組。
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 新增資源群組
+
+1. 進入https://portal.azure.com/#home
+2. 點選<font color='#006DCE'>*建立資源*</font>
+3. 搜尋並選擇 <font color='#006DCE'>*resource group*</font>
+4. 建立資源群組
+5. 為自己的資源群組取名
+6. 選擇區域
+7. 可以給予標籤，以便將來使用服務太多時，可以針對標籤搜尋
+8. 建立資源群組
+
+
+                  </script>
+                </section>
+              
+            </section>
+          
+        
+          
+            <section>
+                <section data-background-image="media/outline_2.png" data-background-size="100%"></section>
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+
+# Azure 電腦視覺服務
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 申請 Azure 電腦視覺服務
+
+1. 進入https://portal.azure.com/#home
+2. 點選<font color='#006DCE'>*建立資源*</font>
+3. 搜尋並選擇 <font color='#006DCE'>*computer vision*</font>
+4. 找到可以選擇定價層 <font color='#006DCE'>*Free F0*</font> 的區域
+5. 給予標籤
+6. 檢閱 + 建立
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 安裝 Python Package
+
+```
+pip3 install azure-cognitiveservices-vision-computervision
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## Azure 物件偵測
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 物件偵測 (Object Detection)
+
+- 偵測物件位置
+- 判斷物件為何 (影像辨識- Image Classification)
+
+<img src="media/object_detection.png" width='40%'></img>
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 物件偵測 (Object Detection)
+
+大致上分成三個步驟：
+
+1. Input
+2. Backbone: 擷取影像特徵
+3. Neck: 整合Backbone擷取出的影像特徵
+4. Head: 預測結果
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 物件偵測 (Object Detection)
+
+#### Prediction concept
+
+![](media/dense_sparse.png)
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## Object Detection with Azure
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+
+### Authenticate: 驗證用戶端
+
+- 取得金鑰 (SUBSCRIPTION KEY) 和 端點 (ENDPOINT)
+ - 進入https://portal.azure.com/#home
+ - 點選所有資源
+ - 點選剛剛建立的電腦視覺服務
+ - 點選<font color='#006DCE'>*金鑰與端點*</font>
+ - 複製<font color='#006DCE'>*金鑰與端點*</font>
+- Azure 電腦視覺的功能都是使用同一組金鑰與端點
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### Authenticate: 驗證用戶端
+
+```
+from azure.cognitiveservices.vision.computervision \
+import ComputerVisionClient
+from msrest.authentication import CognitiveServicesCredentials
+
+SUBSCRIPTION_KEY = "YOUR SUBSCRIPTION_KEY"
+ENDPOINT = "YOUR ENDPOINT"
+CV_CLIENT = ComputerVisionClient(
+    ENDPOINT, CognitiveServicesCredentials(SUBSCRIPTION_KEY)
+)
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 從網路連結讀檔
+
+```
+from io import BytesIO
+import requests
+from PIL import Image, ImageDraw, ImageFont
+
+url = "https://i.imgur.com/Js5H6Qa.jpg"
+response = requests.get(url)
+img = Image.open(BytesIO(response.content))
+
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 畫圖前的準備
+
+```
+draw = ImageDraw.Draw(img)
+font_size = int(5e-2 * img.size[1])
+fnt = ImageFont.truetype(
+  "../static/TaipeiSansTCBeta-Regular.ttf",
+  size=font_size)
+```
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 開始偵測物件
+
+```
+object_detection = CV_CLIENT.detect_objects(url)
+if len(object_detection.objects) > 0:
+    for obj in object_detection.objects:
+        left = obj.rectangle.x
+        top = obj.rectangle.y
+        right = obj.rectangle.x + obj.rectangle.w
+        bot = obj.rectangle.y + obj.rectangle.h
+        name = obj.object_property
+        confidence = obj.confidence
+        print("{} at location {}, {}, {}, {}".format(
+          name, left, right, top, bot))
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 框出物件並標示
+
+```
+        draw.rectangle(
+          [left, top, right, bot],
+          outline=(255, 0, 0), width=3)
+        draw.text(
+            [left, top + font_size],
+            "{0} {1:0.1f}".format(name, confidence * 100),
+            fill=(255, 0, 0),
+            font=fnt,
+        )
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 存出圖檔
+
+```
+img.save("output.png")
+```
+![](media/cv_4.png)
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 物件偵測使用限制
+
+- 小於影像5%的物件難以偵測
+- 同一種物件若是疊在一起或者彼此之間太靠近，可能較難偵測
+- 無法依品牌或產品名稱區分物件
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 印刷和手寫文字辨識
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### OCR
+
+Optical Character Recognition 光學字元辨識
+
+![](media/ocr_6.png)
+
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### OCR的步驟
+
+- 影像前處理
+- 文字偵測
+- 文字辨識
+- 後處理
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+
+### 影像前處理
+
+
+| ![](media/ocr_1.png) | ![](media/ocr_3.png) | ![](media/ocr_4.png) |
+| :------------------: | :------------------: | :------------------: |
+|       原始影像       |        二值化        |        濾雜訊        |
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 文字偵測
+
+![](media/ocr_5.png)
+
+- Object Detection
+- Text Detection
+  - EAST- Efficient accurate scene text detector
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 文字偵測
+
+#### 在文字圖形相對單純的情況
+
+| ![](media/ocr_7.png) | ![](media/ocr_8.png) | ![](media/ocr_9.png) |
+| :------------------: | :------------------: | :------------------: |
+|       原始影像       |        前處理        |    ***文字切分***    |
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 文字辨識
+
+
+- CRNN- Convolutional Recurrent Neural Network
+
+![](media/ocr_6.png)
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 文字辨識
+
+#### 在文字圖形相對單純的情況
+
+- KNN- K-Nearest Neighborhood
+- SVM- Support Vector Machine
+- LeNet
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+
+### 後處理- 字詞校正
+
+- 詞庫：前後文句對照
+- 人工校對
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## OCR with Azure
+### Read API
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### Authenticate: 驗證用戶端
+    
+- 取得金鑰 (SUBSCRIPTION KEY) 和 端點 (ENDPOINT)
+ - 進入https://portal.azure.com/#home
+ - 點選所有資源
+ - 點選剛剛建立的電腦視覺服務
+ - 點選<font color='#006DCE'>*金鑰與端點*</font>
+ - 複製<font color='#006DCE'>*金鑰與端點*</font>
+- Azure 電腦視覺的功能都是使用同一組金鑰與端點
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### Authenticate: 驗證用戶端
+
+```
+from azure.cognitiveservices.vision.computervision \
+import ComputerVisionClient
+from msrest.authentication import (
+  CognitiveServicesCredentials
+)
+SUBSCRIPTION_KEY = "YOUR SUBSCRIPTION_KEY"
+ENDPOINT = "YOUR ENDPOINT"
+CV_CLIENT = ComputerVisionClient(
+    ENDPOINT, CognitiveServicesCredentials(SUBSCRIPTION_KEY)
+)
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 從網路連結讀檔
+
+```
+from io import BytesIO
+import requests
+from PIL import Image, ImageDraw, ImageFont
+
+url = "https://i.imgur.com/qyWiqQv.jpg"
+response = requests.get(url)
+img = Image.open(BytesIO(response.content))
+
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 畫圖前的準備
+
+```
+
+draw = ImageDraw.Draw(img)
+font_size = int(5e-2 * img.size[1])
+fnt = ImageFont.truetype(
+  "../static/TaipeiSansTCBeta-Regular.ttf",
+  size=font_size)
+
+```
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 偵測文字
+
+```
+ocr_results = CV_CLIENT.read(url, raw=True)
+operation_location_remote = \
+ocr_results.headers["Operation-Location"]
+operation_id = operation_location_remote.split("/")[-1]
+```
+
+operation location url
+![](media/operation_id.png)
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 偵測文字
+
+#### 確認是否完成
+
+```
+status = ["notStarted", "running"]
+while True:
+    get_handw_text_results = \
+    CV_CLIENT.get_read_result(operation_id)
+    if get_handw_text_results.status not in status:
+        break
+    time.sleep(1)
+```
+- result status
+  - notStarted
+  - running
+  - failed
+  - succeeded
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+
+### 取出文字並畫圖
+
+```
+succeeded = OperationStatusCodes.succeeded
+
+if get_handw_text_results.status == succeeded:
+    res = get_handw_text_results.analyze_result.read_results
+    for text_result in res:
+        for line in text_result.lines:
+            bounding_box = line.bounding_box
+            bounding_box += bounding_box[:2]
+            draw.line(
+                line.bounding_box, 
+                fill=(255, 0, 0), 
+                width=int(font_size / 10)
+            )
+            
+```
+
+- bounding_box是四邊形的頂點
+  - [x1, y1, x2, y2, x3, y3, x4, y4]
+  - `draw.line`需要知道起點位置，才能畫出封閉形狀
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 標上偵測到的文字
+
+```
+            left = line.bounding_box[0]
+            top = line.bounding_box[1]
+            draw.text(
+                [left, top - font_size],
+                line.text,
+                fill=(0, 255, 255),
+                font=fnt,
+            )
+
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+
+### 存出圖檔
+
+```
+img.save("output.png")
+```
+![](media/ocr_6.png)
+
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### Azure OCR 使用限制
+
+- 支援語言: https://tinyurl.com/y5u39br3
+- 只能辨識手寫英文
+- Read API 只支援英文、西班牙文、德文、法文、義大利文、葡萄牙文和荷蘭文
+- Read REST API 可以支援大部分的語言
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 影像說明服務介紹
+## Image Description
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### Image Captioning
+
+
+![](media/image_caption.jpg)
+
+a cat sleeping on a wooden structure
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### Image Captioning
+
+- Encoder-Decoder
+  - Encoder (CNN): 擷取特徵
+  - Decoder (RNN): 生成文句
+
+![](media/image_caption_1.png)
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## Image Captioning with Azure
+## Image Description
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### Authenticate: 驗證用戶端
+    
+- 取得金鑰 (SUBSCRIPTION KEY) 和 端點 (ENDPOINT)
+ - 進入https://portal.azure.com/#home
+ - 點選所有資源
+ - 點選剛剛建立的電腦視覺服務
+ - 點選<font color='#006DCE'>*金鑰與端點*</font>
+ - 複製<font color='#006DCE'>*金鑰與端點*</font>
+- Azure 電腦視覺的功能都是使用同一組金鑰與端點
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### Authenticate: 驗證用戶端
+
+```
+from azure.cognitiveservices.vision.computervision \
+import ComputerVisionClient
+from msrest.authentication import (
+  CognitiveServicesCredentials
+)
+SUBSCRIPTION_KEY = "YOUR SUBSCRIPTION_KEY"
+ENDPOINT = "YOUR ENDPOINT"
+CV_CLIENT = ComputerVisionClient(
+    ENDPOINT, CognitiveServicesCredentials(SUBSCRIPTION_KEY)
+)
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 產生描述
+
+```
+description_results = CV_CLIENT.describe_image(url)
+output = ""
+for caption in description_results.captions:
+    output += "'{}' with confidence {:.2f}% \n".format(
+        caption.text, caption.confidence * 100
+    )
+print(output)
+```
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+![](media/image_caption_2.png)
+
+
+
+                  </script>
+                </section>
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 參考資料
+- Azure Computer Vision: https://tinyurl.com/y8lmk6bx
+- Yolo: https://arxiv.org/pdf/2004.10934.pdf
+- R-CNN: https://arxiv.org/pdf/1311.2524.pdf
+- EAST: https://arxiv.org/pdf/1704.03155.pdf
+- CRNN: https://arxiv.org/pdf/1507.05717.pdf
+- LeNet: https://tinyurl.com/ya6qqla4
+- Image Captioning: https://arxiv.org/pdf/1609.06647.pdf
+
+
+                  </script>
+                </section>
+            </section>
+          
+        
+          
+            <section>
+                <section data-background-image="media/outline_3.png" data-background-size="100%"></section>
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+# Imgur API
+透過 Imgur API 取得影像的URL
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+
+## 事前準備
+
+- 安裝 Postman
+- 申請 Imgur 帳號
+- 取得 token
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 安裝 Postman
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+先下載 Postman ，並安裝
+
+https://www.postman.com/downloads/
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 申請 Imgur 帳號
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+**申請 Imgur 帳號**
+
+1. 進入https://imgur.com/register?redirect=%2F
+2. 請直接輸入email申請
+
+![](media/imgur_1.png)
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 取得 token
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+**註冊Imgur App**
+
+進入 https://api.imgur.com/oauth2/addclient
+
+![](media/imgur_2.png)
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+**取得 Client ID 和 secret**
+
+
+![](media/imgur_3.png)
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+**編輯 Redirect**
+
+進入https://imgur.com/account/settings/apps
+
+![](media/imgur_4.png)
+
+輸入https://www.getpostman.com/oauth2/callback
+
+![](media/imgur_5.png)
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+**開啟Postman**
+
+![](media/imgur_7.png)
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+**新建Request**
+
+![](media/imgur_6.png)
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+**點選Authorization**
+
+**選擇OAuth 2.0**
+
+**Get New Access Token**
+
+![](media/imgur_8.png)
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+**填寫以下資訊**
+
+
+![](media/imgur_9.png)
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+**填寫以下資訊**
+
+- Callback URL: https://www.getpostman.com/oauth2/callback
+- Auth URL: https://api.imgur.com/oauth2/authorize
+- Access Token URL: https://api.imgur.com/oauth2/token
+- Client ID: YOUR Client ID
+- Client Secret： YOUR Client Secret
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+**再登入一次imgur**
+
+![](media/imgur_10.png)
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+**取得token**
+
+![](media/imgur_11.png)
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+**取得token**
+
+- client id
+- client secret
+- access token
+- refresh token
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 透過 Imgur API 取得圖片連結
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 安裝 imgur package
+
+```
+pip3 install imgur-python
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### imgur-python 使用範例
+
+上傳影像並取得影像連結
+```
+from imgur_python import Imgur
+
+IMGUR_CONFIG = {
+  "client_id": "YOUR ID",
+  "client_secret": "YOUR SECRET",
+  "access_token": "YOUR ACCESS TOKEN",
+  "refresh_token": "YOUR REFRESH TOKEN"
+}
+IMGUR_CLIENT = Imgur(config=IMGUR_CONFIG)
+image = IMGUR_CLIENT.image_upload(
+  filename, "title", "description")
+link = image["response"]["data"]["link"]
+```
+
+                  </script>
+                </section>
+              
+            </section>
+          
+        
+          
+            <section>
+                <section data-background-image="media/outline_5.png" data-background-size="100%"></section>
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+# Git 版本控制
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## Install Git
+
+```
+sudo apt-get update $ sudo apt-get install git
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 設定名字和email
+
+```
+git config --global user.name "your name"
+git config --global user.email "your email"
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## Start to git
+
+請先進入要做版本控制的資料夾
+
+```
+# 初始化，產生git repository
+git init
+# 查看狀態
+git status
+# 將檔案加入git
+git add file1 file2 ....
+# 並加以描述你做的更動
+git commit -m "message"
+```
+![](media/git_4.png)
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## check your log
+
+```
+git log
+```
+![](media/git_1.png)
+
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## Reset current HEAD to the specified state
+
+回到上一個commit的狀態
+```
+git reset HEAD
+```
+
+回到指定log
+```
+git reset eb17230
+```
+
+加上 `--hard` 會把尚未commit的更動完全清掉
+
+```
+git reset eb17230 --hard
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## Github
+
+https://github.com/
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+
+![](media/github_1.png)
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+
+![](media/github_2.png)
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+![](media/github_3.png)
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+
+![](media/github_4.png)
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+產生公鑰與私鑰
+```
+ssh-keygen -t rsa -f ~/.ssh/your_file -C your@email
+```
+
+![](media/github_7.png)
+
+複製公鑰
+```
+cat .ssh/your_file.pub
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+
+![](media/github_5.png)
+
+
+
+
+                  </script>
+                </section>
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+Start the ssh-agent in the background.
+```
+eval "$(ssh-agent -s)"
+```
+
+編輯`~/.ssh/config`
+```
+Host *
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/your_file
+```
+
+
+                  </script>
+                </section>              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+Testing your SSH connection
+
+```
+ssh -T git@github.com
+```
+
+![](media/github_6.png)
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 與線上的repository互動
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### clone repository from somewhere
+
+![](media/github_8.png)
+
+```
+git clone git@github.com:KuiMing/azure_ai_tutorial.git
+```
+需要SSH key
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+
+### branch 分枝
+
+列出分支名稱
+
+```
+git branch
+```
+![](media/git_2.png)
+
+`*` 代表目前所在的分支
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### remote
+
+查看遠端URL
+```
+git remote -v
+```
+
+![](media/git_3.png)
+
+新增遠端repository
+
+```
+git remote add 名稱 遠端URL
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+
+### update your online repository
+
+```
+git push 遠端名稱 分枝名稱
+```
+
+範例
+```
+git push origin master
+```
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### update your local repository
+
+```
+git pull 遠端名稱 分枝名稱
+```
+
+範例
+```
+git pull origin master
+```
+
+
+                  </script>
+                </section>
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 參考資料
+
+- Pro Git: https://git-scm.com/book/zh-tw/v2
+- Git Reference: https://git-scm.com/docs
+- Github Guides: https://guides.github.com/
+
+
+                  </script>
+                </section>              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## Git 練習
+
+* Flask (hello world)
+* push 到自己的github
+
+
+                  </script>
+                </section>
+              
+            </section>
+          
+        
+          
+            <section>
+                <section data-background-image="media/outline_4.png" data-background-size="100%"></section>
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+# Azure WEB APP
+## App Service
+
+方便部署服務
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 申請WEB APPS
+1. 進入https://portal.azure.com/#home
+2. 點選<font color='#006DCE'>*建立資源*</font>
+3. 搜尋並選擇<font color='#006DCE'>*Web App*</font>
+
+
+
+                  </script>
+                </section>
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 申請WEB APPS
+
+4. 設定基本資料
+  - 選擇自己建立的資源群組
+  - 為自己的Web APP取名
+  - 點選<font color='#006DCE'>*代碼*</font>作為發布方式
+  - 選取階段堆疊：選擇 Python3.7
+  - 選擇區域 
+  - 變更 SKU和大小：改為 B1 (無法選擇 B1 時，則變更區域)
+5. 可以給予標籤，以便將來使用服務太多時，可以針對標籤搜尋
+6. 檢閱 + 建立
+
+
+
+                  </script>
+                </section>              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 設定azure web app與git
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 設定使用者層級認證
+
+```
+# 在終端機中輸入
+az webapp deployment user set \
+--user-name <username> --password <password>
+
+# 取得在Azure Web App內的git url
+az webapp deployment source config-local-git \
+--name <webappname> --resource-group <yourResourceGroup>
+```
+
+- 使用者名稱在 Azure 服務及本機 Git 推送中都必須是唯一的，且不能包含 ‘@’ 符號。
+- 密碼長度必須至少為 8 個字元，包含下列三個元素其中兩個：字母、數字及符號。
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 取得在Azure Web App內的git url
+
+```
+# 在終端機中輸入
+az webapp deployment source config-local-git \
+--name <webappname> --resource-group <yourResourceGroup>
+```
+
+```
+# 得到 URL
+{
+  "url": "https://<username>@<webappname>.scm.azurewebsites.net/linecv.git"
+}
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 加入git remote
+
+```
+git remote add azure <your_git_url>
+
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 部署服務
+
+```
+git push azure master
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 查看 Web App log
+
+```
+az webapp log tail \
+--name <webappname> --resource-group <yourResourceGroup>
+```
+
+![](media/web_7.png)
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### ssh 連線進入 Web App
+
+```
+az webapp create-remote-connection \
+--name <webappname> --resource-group <yourResourceGroup> &
+```
+
+![](media/web_8.png)
+
+```
+ssh root@127.0.0.1 -p 57281
+```
+![](media/web_9.png)
+
+
+                  </script>
+                </section>
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 參考資料
+
+- Azure App Service documentation: https://tinyurl.com/yctek68u
+- 其他類似的Paas
+  - Heroku: https://heroku.com/
+  - Google app engine: https://cloud.google.com/appengine
+  - AWS Elastic Beanstalk: https://tinyurl.com/y8qcuer3
+
+
+
+                  </script>
+                </section>        
+              
+            </section>
+          
+        
+          
+            <section>
+                <section data-background-image="media/outline_6.png" data-background-size="100%"></section>
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+# Line Messaging API
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## How it works
+
+- 使用者發送訊息到 LINE chatbot 帳號
+- LINE Platform 發送 `webhook event` 到 bot server
+- bot server 透過 LINE Platform 回應給使用者
+
+![](media/line_8.png)
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 建立 Messaging API channel
+- 進入 https://account.line.biz/login
+- 使用 LINE 帳號登入
+- 找到 Providers
+  - 按下 Create 
+  - 取名：Provider name
+- 選擇 <font color='#00BD3C'>Create a Messaging API channel</font>
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 建立 Messaging API channel
+
+- 填寫基本資料
+  - Channel name
+  - Channel discription
+  - Category
+  - Subcategory
+- 打勾- I have read and agree ....
+- Create
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 進入 Messaging API channel
+
+- Chatbot 一定會用到的參數
+  - 點選 Basic Setting：<font color='#00BD3C'>Channel Secret</font>
+![](media/line_1.png)
+  - 點選 Messaging API：按下 `issue`，得到<font color='#00BD3C'>Channel access token</font>
+![](media/line_2.png)
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## Line chatbot
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 安裝 Line chatbot python package
+
+```
+pip3 install line-bot-sdk
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### Flask + Line Chatbot
+
+`application.py`
+
+```
+from flask import Flask, request, abort
+from linebot import LineBotApi, WebhookHandler
+from linebot.exceptions import InvalidSignatureError
+app = Flask(__name__)
+
+LINE_SECRET = "YOUR line secret"]
+LINE_TOKEN = "YOU line_token"
+LINE_BOT = LineBotApi(LINE_TOKEN)
+HANDLER = WebhookHandler(LINE_SECRET)
+
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+
+### Flask + Line Chatbot
+
+`application.py`
+
+```
+@app.route("/callback", methods=["POST"])
+def callback():
+    # X-Line-Signature: 數位簽章
+    signature = request.headers["X-Line-Signature"]
+    print(signature)
+    body = request.get_data(as_text=True)
+    print(body)
+    try:
+        HANDLER.handle(body, signature)
+    except InvalidSignatureError:
+        print("Check the channel secret/access token.")
+        abort(400)
+    return "OK"
+
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### Webhook setting
+
+
+- 進入 Messaging API channel
+- 點選 <font color='#00BD3C'>Messaging API</font>
+- 找到Webhook URL
+  - 點擊Edit
+  - 填上 Azure Web APP 的 URL 加上 <font color='#00BD3C'>/callback</font>
+    - example: https://<YOUR WEB APP NAME>.azurewebsites.net/callback
+  - 點擊Verify
+- 開啟 <font color='#00BD3C'>Use Webhook</font>
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### Webhook setting
+
+![](media/line_4.png)
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 讓 Chatbot 回話
+#### 訊息種類
+
+- Message
+- SendMessage
+- 基本訊息：
+  - Text
+  - Image
+  - Video
+  - Audio
+  - Location
+  - Sticker
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 讓 Chatbot 回話
+
+`application.py`
+```
+from linebot.models import (
+    MessageEvent,
+    TextMessage,
+    TextSendMessage,
+)
+```
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+
+`application.py`
+```
+# message 可以針對收到的訊息種類
+@HANDLER.add(MessageEvent, message=TextMessage)
+def handle_message(event):
+    url_dict = {
+      "TIBAME":"https://www.tibame.com/coursegoodjob/traffic_cli", 
+      "HELP":"https://developers.line.biz/zh-hant/docs/messaging-api/"}
+# 將要發出去的文字變成TextSendMessage
+    try:
+        url = url_dict[event.message.text.upper()]
+        message = TextSendMessage(text=url)
+    except:
+        message = TextSendMessage(text=event.message.text)
+# 回覆訊息
+    LINE_BOT.reply_message(event.reply_token, message)
+
+```
+
+
+                  </script>
+                </section>
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 觀察`event`
+
+
+
+```
+{
+  "events":[{
+    "type":"message",
+    "replyToken":"用來回應此event的token",
+    "source":{
+      "userId":"使用者對於此Chatbot的專屬個人ID",
+      "type":"user"},
+    "timestamp":1607864918505,
+    "mode":"active",
+    "message":{
+      "type":"text",
+      "id":"代表此訊息的ID",
+      "text":"Hi"
+    }}],
+  "destination":"User ID of a bot"}
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 參考資料
+
+- line-bot-sdk-python github: https://tinyurl.com/y6t58pgw
+- Line Messaging API 官方文件: https://tinyurl.com/y3exbo4x
+
+
+                  </script>
+                </section>
+              
+            </section>
+          
+        
+          
+            <section>
+                <section data-background-image="media/outline_7.png" data-background-size="100%"></section>
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+# Flex Message
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## Flex Message
+
+- 客製化的互動對話介面
+- 透過 JSON 格式編輯版面
+- 適用於各種載體
+
+![](media/flex_1.jpg)
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## Flex Message elements
+
+![](media/flex_2.png)
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## Flex Message Simulator
+
+1. 進入 https://developers.line.biz/flex-simulator/
+2. 使用 LINE 帳號登入
+3. 開始編輯Flex Message:
+  - 點選 Showcase，依照需求選擇範本
+  - 點選New，選擇 bubble 或 carousel
+4. 依需求編輯或增減 components
+5. 編輯完成後，可點選`View as JSON`，複製內容，存成 JSON 檔
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### Components 零件
+
+- Box: 用來乘載其他零件
+- Button: 可以用來觸發某些動作的按鈕，例如：前往某一網站或產生訊息
+- Image: 影像連結
+- Icon: icon連結
+- Text: 單一字串，可控制字體字型
+- Span: 可將不同字體字型的字串放在一行內
+- Separator: 分隔線
+- Filler: 產生空間，通常用來排版
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## Flex Message Simulator
+
+![](media/flex_4.png)
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## Flex Message Simulator
+
+![](media/flex_5.png)
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## Send Flex Message
+
+- 用 python 讀 JSON 檔，依情境修改內容，透過`FlexSendMessage`送出
+
+- 範例：
+
+```
+with open("templates/detect_result.json", "r") as f_r:
+   bubble = json.load(f_r)
+f_r.close()
+# 依情況更動 components
+bubble["body"]["contents"][0]["contents"][0]["text"] = output
+bubble["header"]["contents"][0]["contents"][0]["url"] = link
+LINE_BOT.reply_message(
+   event.reply_token, 
+   [
+     FlexSendMessage(alt_text="Report", contents=bubble)
+     ]
+)
+```
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## Flex Message 練習
+
+| ![](media/flex_2.jpg) | ![](media/flex_1.jpg) |
+| :-------------------: | :-------------------: |
+
+
+                  </script>
+                </section>
+              
+            </section>
+          
+        
+          
+            <section>
+                <section data-background-image="media/outline_8.png" data-background-size="100%"></section>
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+
+# Azure Face service
+
+
+                  </script>
+                </section>
+                
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## Azure Face service
+
+- Face Detection 臉部偵測
+
+- Face Recognition 臉部辨識
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## Face Detection
+
+- 偵測臉部
+- Face Landmark 臉部特徵點
+- Attribution 臉部屬性
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### Face Detection
+
+![](media/face_5.png)
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### Face Landmark
+
+![](media/face_9.png)
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### Face Attribution
+
+- 基本資料
+  - age - 年紀
+  - gender - 性別
+- 毛髮
+  - hair - 是否禿頭；是否露出頭髮；髮色
+  - facialHair - 八字鬍、山羊鬍、鬢角
+
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### Face Attribution
+
+- 動作與表情
+  - headPose - 頭部姿勢
+  - smile - 微笑的程度
+  - emotion - 偵測快樂、悲傷、中性、生氣、蔑視、厭惡、驚喜和恐懼等情緒，顯示的數值表示預測的信心程度
+
+
+- 裝飾
+  - glasses - 是否戴眼鏡
+  - accessories - 是否有飾品
+  - makeup - 是否有眼妝或唇妝
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### Face Attribution
+
+- 臉部完整程度
+  - exposure - 露臉的程度
+  - occlusion - 眼睛、額頭、嘴巴是否被擋住
+- 影像品質
+  - noise - 照片雜訊多寡
+  - blur - 臉部模糊的程度
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### Face Attribution
+
+
+![](media/face_8.jpg) ![](media/face_11.png) 
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### Face Attribution
+
+
+![](media/face_8.jpg) ![](media/face_12.png) 
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### Face Attribution
+
+
+![](media/face_8.jpg) ![](media/face_13.png)
+
+## Face Recognition
+
+![](media/face_4.png)
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### Face Recognition Flow
+
+![](media/face_1.png)
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### Face Recognition Flow
+
+- Server
+  - 將需要辨識的人臉編碼，取得特徵向量
+  - 將特徵向量存入資料庫
+- Client
+  - 取得人臉影像
+  - 將人臉轉換成特徵向量
+  - 與資料庫內的特徵向量比對
+    - 歐氏距離
+
+
+                  </script>
+                </section>
+              
+            </section>
+          
+        
+          
+            <section>
+                <section data-background-image="media/outline_9.png" data-background-size="100%"></section>
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+# Face Recognition with Azure
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 安裝 Python Package
+
+```
+pip3 install azure-cognitiveservices-vision-face
+```
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 申請 Azure 臉部服務
+
+1. 進入https://portal.azure.com/#home
+2. 點選<font color='#006DCE'>*建立資源*</font>
+3. 搜尋並選擇 <font color='#006DCE'>*face*</font>
+4. 找到可以選擇定價層 <font color='#006DCE'>*Free F0*</font> 的區域
+5. 給予標籤
+6. 檢閱 + 建立
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### Authenticate: 驗證用戶端
+
+
+- 取得金鑰 (SUBSCRIPTION KEY) 和 端點 (ENDPOINT)
+ - 進入https://portal.azure.com/#home
+ - 點選所有資源
+ - 點選剛剛建立的臉部服務
+ - 點選<font color='#006DCE'>*金鑰與端點*</font>
+ - 複製<font color='#006DCE'>*金鑰與端點*</font>
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### Authenticate: 驗證用戶端
+
+```
+import json
+import requests
+from azure.cognitiveservices.vision.face import FaceClient
+from msrest.authentication import CognitiveServicesCredentials
+KEY = "YOUR KEY"
+ENDPOINT = "YOR ENDPOINT"
+FACE_CLIENT = FaceClient(
+  ENDPOINT, CognitiveServicesCredentials(KEY))
+
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 人臉偵測
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 偵測人臉
+
+使用網路上的照片
+```
+url = "YOUR IMAGE URL"
+
+detected_faces = FACE_CLIENT.face.detect_with_url(
+    url=url,
+    detectionModel="detection_02",
+    return_recognition_model=True,
+    return_face_landmarks=True,
+    return_face_attributes=[
+        "age", "blur", "gender", "headPose",
+        "smile", "facialHair", "glasses",
+        "emotion", "exposure",
+    ],
+)
+response = requests.get(url)
+img = Image.open(BytesIO(response.content))
+
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 偵測人臉
+
+使用本機上的照片
+```
+my_pic = open("YOUR IMAGE PATH", 'r+b')
+
+detected_faces = FACE_CLIENT.face.detect_with_stream(
+    my_pic,
+    detectionModel="detection_02",
+    return_recognition_model=True,
+    return_face_landmarks=True,
+    return_face_attributes=[
+        "age", "blur", "gender", "headPose",
+        "smile", "facialHair", "glasses",
+        "emotion", "exposure",
+    ],
+)
+
+img = Image.open("YOUR IMAGE PATH")
+
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+### 框出人臉
+
+
+```
+face = detected_faces[0]
+
+# 每張被偵測到的臉都會有Face ID
+print(face.face_id)
+rectangle = face.face_rectangle.as_dict()
+bbox = [
+    rectangle["left"],
+    rectangle["top"],
+    rectangle["left"] + rectangle["width"],
+    rectangle["top"] + rectangle["height"],
+]
+draw = ImageDraw.Draw(img)
+draw.rectangle(bbox, width=3, outline=(255, 0, 0))
+img.show()
+```
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+### 框出人臉
+
+![](media/face_5.png)
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+### 畫出Landmarks
+
+```
+landmark = face.face_landmarks.as_dict()
+for i in landmark.values():
+    draw.ellipse([
+      i["x"] - 2, i["y"] - 2, 
+      i["x"] + 2, i["y"] + 2], fill=(255, 0, 0))
+img.crop(bbox).show()
+```
+
+![](media/face_2.png)
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 列出所有屬性
+
+```
+print(json.dumps(face.face_attributes.as_dict(), indent=4))
+```
+![](media/face_7.png)
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 人臉辨識
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 建立Person Group
+
+```
+PERSON_GROUP_ID = "tibame"
+face_client.person_group.create(
+  person_group_id=PERSON_GROUP_ID, name=PERSON_GROUP_ID)
+
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 在Person Group中新增一人
+
+```
+preson = face_client.person_group_person.create(
+  PERSON_GROUP_ID, "Benjamin")
+```
+
+新增照片給指定之人
+```
+my_pic = open("YOUR PHOTO", 'r+b')
+face_client.person_group_person.add_face_from_stream(
+  PERSON_GROUP_ID, ben.person_id, my_pic)
+```
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 照片限制
+
+- 影像格式：JPEG、PNG、GIF、BMP
+- 影像大小介於 1 KB 和 6 MB 之間
+  - 臉部大小應介於 36x36 和 4096x4096 pixels
+  - 如果臉部大小為 36x36 pixels ，照片不可以超過 1920x1080 pixels
+- 盡量搜集各種角度、照明程度的照片
+- 一個人可以有248個臉部照片，每張照片都應該只有一張臉，不可以無臉
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+### 照片限制
+- 有些照片無法辨識：
+  - 太亮的影像，例如嚴重的背光
+  - 眼睛被擋住
+  - 臉型或髮型改變
+  - 臉部外觀因為年齡的變化
+  - 極端臉部表情
+  - 頭部動作太大
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 開始訓練
+
+```
+face_client.person_group.train(PERSON_GROUP_ID)
+
+while (True):
+    training_status = face_client.\
+    person_group.get_training_status(PERSON_GROUP_ID)
+    print("Training status: {}.".format(
+      training_status.status))
+    if training_status.status is TrainingStatusType.succeeded:
+        break
+    elif training_status.status is TrainingStatusType.failed:
+        sys.exit('Training the person group has failed.')
+    time.sleep(5)
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 辨識人臉
+
+```
+img = open("YOUR PHOTO", "r+b")
+detected_face = FACE_CLIENT.face.detect_with_stream(
+    img, detection_model="detection_01"
+)
+# 臉部服務會給每一張偵測到的臉一個face ID
+results = FACE_CLIENT.face.identify(
+  [detected_face[0].face_id], PERSON_GROUP_ID)
+result = results[0].as_dict()
+# 如果在資料庫中有找到相像的人，會給予person ID
+# 再拿此person ID去查詢名字
+person = FACE_CLIENT.person_group_person.get(
+        PERSON_GROUP_ID, result["candidates"][0]["person_id"]
+)
+print(person.name)
+```
+
+
+                  </script>
+                </section>
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 參考資料
+
+- Face document: https://tinyurl.com/y6f65wm2
+- 人臉相關套件：
+  - Dlib:
+    - http://dlib.net/
+    - https://github.com/ageitgey/face_recognition
+  - MTCNN:
+    - https://github.com/ipazc/mtcnn
+  - Facenet:
+    - https://github.com/davidsandberg/facenet
+
+
+
+                  </script>
+                </section>              
+            </section>
+          
+        
+          
+            <section>
+                <section data-background-image="media/outline_10.png" data-background-size="100%"></section>
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+# Line Chatbot 整合
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 流程
+
+![](media/integration.png)
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 流程
+
+1. 在 <font color='#006DCE'>Azure Web APP Service</font> 以 `Flask` 架設 bot server
+2. 使用者透過 LINE Platform 傳遞影像到 bot server
+3. Bot server 將影像傳給 `imgur`， 取得 影像 URL
+4. Bot server 將影像 URL 傳給 <font color='#006DCE'>Azure Cognitive Service</font>，取得偵測結果
+5. Bot server 把偵測結果和影像 URL 包裝成 Flex Message
+6. Bot server 透過 Line Platform 將 <font color='#00BD3C'>Flex Message</font> 傳回給使用者
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 目標
+
+| ![](media/integration_1.png)  |    ![](media/integration_2.png)     |      ![](media/integration_3.png)       |
+| :---------------------------: | :---------------------------------: | :-------------------------------------: |
+| <font size=5>人臉辨識 </font> | <font size=5>辨識車輛與車牌 </font> | <font size=5>物件偵測與影像描述 </font> |
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 會用到的 Azure 認知服務
+
+
+- 人臉偵測
+- 人臉辨識
+- 物件偵測
+- OCR
+- 影像描述
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 需要稍微處理的小問題
+
+- 要怎麼將 Key, Secret, Token, Endpoint 傳入 Azure Web APP service
+- 人臉辨識：
+  - 沒有臉或多臉的情況
+  - 遇到陌生人的情況
+- OCR：只輸出車牌號碼
+- 物件偵測：標示完的影像，如何放到 Flex Message
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+
+## Configure
+
+- 把 Key, Secret, Token, Endpoint 都存進 configure
+
+`config.json`
+```
+{
+  "line":{
+        "line_secret":...,
+        "line_token":...},
+  "azure":{
+          "subscription_key":...,
+          "endpoint":"YOUR ENDPOINT URL",
+          "face_key":...,
+          "face_end":"YOUR FACE ENDPOINT URL"},
+  "imgur":{
+          "client_id":...,
+          "client_secret":...,
+          "access_token":...,
+          "refresh_token":...}
+}
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+## Configure
+
+
+- 連結 azure web app service
+- 將 config file 傳到 azure Web APP service
+
+
+```
+az webapp create-remote-connection \
+-n linecv --resource-group Tibame &
+```
+
+```
+scp -p 57281 config.json root@127.0.0.1:/home/config.json
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## Configure
+
+
+```
+import json
+CONFIG = json.load(open("/home/config.json", "r"))
+
+# 電腦視覺
+SUBSCRIPTION_KEY = CONFIG["azure"]["subscription_key"]
+ENDPOINT = CONFIG["azure"]["endpoint"]
+CV_CLIENT = ComputerVisionClient(
+    ENDPOINT, CognitiveServicesCredentials(SUBSCRIPTION_KEY))
+
+# 人臉
+FACE_KEY = CONFIG["azure"]["face_key"]
+FACE_END = CONFIG["azure"]["face_end"]
+FACE_CLIENT = FaceClient(
+  FACE_END, CognitiveServicesCredentials(FACE_KEY))
+PERSON_GROUP_ID = "tibame"
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## Configure
+
+```
+# LINE Messaging API
+LINE_SECRET = CONFIG["line"]["line_secret"]
+LINE_TOKEN = CONFIG["line"]["line_token"]
+LINE_BOT = LineBotApi(LINE_TOKEN)
+HANDLER = WebhookHandler(LINE_SECRET)
+
+# imgur API
+IMGUR_CONFIG = CONFIG["imgur"]
+IMGUR_CLIENT = Imgur(config=IMGUR_CONFIG)
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 人臉辨識
+
+```
+def azure_face_recognition(filename):
+    img = open(filename, "r+b")
+    detected_face = FACE_CLIENT.face.detect_with_stream(
+        img, detection_model="detection_01"
+    )
+    # 多於一張臉的情況
+    if len(detected_face) != 1:
+        return ""
+    results = FACE_CLIENT.face.identify(
+      [detected_face[0].face_id], PERSON_GROUP_ID)
+    # 沒有結果的情況
+    if len(results) == 0:
+        return "unknown"
+```
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 人臉辨識
+
+接續上頁的code
+
+```
+    result = results[0].as_dict()
+    # 找不到相像的人
+    if len(result["candidates"]) == 0:
+        return "unknown"
+    # 雖然有類似的人，但信心程度太低
+    if result["candidates"][0]["confidence"] < 0.5:
+        return "unknown"
+    person = FACE_CLIENT.person_group_person.get(
+        PERSON_GROUP_ID, result["candidates"][0]["person_id"]
+    )
+    return person.name
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 針對車牌 OCR
+
+```
+def azure_ocr(url):
+
+    ocr_results = CV_CLIENT.read(url, raw=True)
+    operation_location_remote = \
+    ocr_results.headers["Operation-Location"]
+    operation_id = operation_location_remote.split("/")[-1]
+    status = ["notStarted", "running"]
+    while True:
+        get_handw_text_results = \
+        CV_CLIENT.get_read_result(operation_id)
+        if get_handw_text_results.status not in status:
+            break
+        time.sleep(1)
+
+```
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 針對車牌 OCR
+
+接續上頁的code
+```
+    text = []
+    succeeded = OperationStatusCodes.succeeded
+    if get_handw_text_results.status == succeeded:
+        res = get_handw_text_results.\
+        analyze_result.read_results
+        for text_result in res:
+            for line in text_result.lines:
+                if len(line.text) <= 8:
+                    text.append(line.text)
+    # 利用 Regular Expresion (正規表示法) 針對台灣車牌的規則過濾
+    r = re.compile("[0-9A-Z]{2,4}[.-]{1}[0-9A-Z]{2,4}")
+    text = list(filter(r.match, text))
+    return text[0].replace(".", "-") if len(text) > 0 else ""
+```
+
+台灣車牌規定：https://tinyurl.com/y5hcufho
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 物件偵測
+
+```
+def azure_object_detection(url, filename):
+    img = Image.open(filename)
+    draw = ImageDraw.Draw(img)
+    font_size = int(5e-2 * img.size[1])
+    fnt = ImageFont.truetype(
+      "static/TaipeiSansTCBeta-Regular.ttf", size=font_size)
+    object_detection = CV_CLIENT.detect_objects(url)
+    if len(object_detection.objects) > 0:
+        for obj in object_detection.objects:
+            left = obj.rectangle.x
+            top = obj.rectangle.y
+            right = obj.rectangle.x + obj.rectangle.w
+            bot = obj.rectangle.y + obj.rectangle.h
+            name = obj.object_property
+            confidence = obj.confidence
+```
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 物件偵測
+
+接續上頁的code
+```
+# 畫框並標上物件名稱與信心程度
+            draw.rectangle(
+              [left, top, right, bot], 
+              outline=(255, 0, 0), width=3)
+            draw.text(
+                [left, top + font_size],
+                "{} {}".format(name, confidence),
+                fill=(255, 0, 0),
+                font=fnt,
+            )
+```
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 物件偵測
+接續上頁的code
+```
+# 把畫完的結果存檔，利用 imgur 把檔案轉成網路連結
+    img.save(filename)
+    image = IMGUR_CLIENT.image_upload(filename, "", "")
+    link = image["response"]["data"]["link"]
+# 最後刪掉圖檔
+    os.remove(filename)
+    return link
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+
+## 影像描述
+
+
+```
+def azure_describe(url):
+    description_results = CV_CLIENT.describe_image(url)
+    output = ""
+    for caption in description_results.captions:
+        output += "'{}' with confidence {:.2f}% \n".format(
+            caption.text, caption.confidence * 100
+        )
+    return output
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 與 LINE Messaging API 結合
+
+```
+@HANDLER.add(MessageEvent, message=ImageMessage)
+def handle_content_message(event):
+    # 先把傳來的照片存檔
+    filename = "{}.jpg".format(event.message.id)
+    message_content = LINE_BOT.get_message_content(
+      event.message.id)
+    with open(filename, "wb") as f_w:
+        for chunk in message_content.iter_content():
+            f_w.write(chunk)
+    f_w.close()
+
+    # 將取得照片的網路連結
+    image = IMGUR_CLIENT.image_upload(filename, "", "")
+    link = image["response"]["data"]["link"]
+    
+```
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 與 LINE Messaging API 結合
+
+接續上頁的code
+
+```
+    name = azure_face_recognition(filename)
+    if name != "": # 如果只有一張人臉，輸出人臉辨識結果
+        now = datetime.now(timezone(timedelta(hours=8))).\
+        strftime("%Y-%m-%d %H:%M") # 注意時區
+        output = "{0}, {1}".format(name, now)
+    else:
+        plate = azure_ocr(link)
+        link_ob = azure_object_detection(link, filename)
+        # 有車牌就輸出車牌
+        if len(plate) > 0:
+            output = "License Plate: {}".format(plate)
+        # 沒有車牌就就輸出影像描述的結果
+        else:
+            output = azure_describe(link)
+        link = link_ob
+```
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 與 LINE Messaging API 結合
+
+接續上頁的code
+
+```
+# 分別影像連結和偵測結果放到Flex Message
+    with open("templates/detect_result.json", "r") as f_r:
+        bubble = json.load(f_r)
+    f_r.close()
+    bubble["body"]["contents"][0]["contents"][0]["contents"][0]["text"] = output
+    bubble["header"]["contents"][0]["contents"][0]["contents"][0]["url"] = link
+    LINE_BOT.reply_message(
+        event.reply_token, 
+        [FlexSendMessage(alt_text="Report", contents=bubble)]
+    )
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 小建議
+
+- 善用 `az webapp log`
+- 可以參考: https://tinyurl.com/y5693daa ，觀察 `events`
+- 不知道錯在哪時，可以把相關變數 `print` 出來
+- 做完一個功能就檢查一次
+
+
+                  </script>
+                </section>
+              
+            </section>
+          
+        
+          
+            <section>
+                <section data-background-image="media/outline_11.png" data-background-size="100%"></section>
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+# Azure Custom Vision 
+## 自訂視覺服務
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## Azure Custom Vision
+
+- Transfer Learning 轉移學習
+- 服務項目
+  - Image Classification
+  - Object Detection
+- 流程
+  1. 上傳影像資料與標註
+  2. 訓練模型
+  3. 預測
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### Image Classification
+
+![](media/image_caption.jpg)
+
+```
+cat: 92%
+dog: 8%
+```
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## Transfer Learning
+
+- 利用既有的模型 (pre-trained model)，針對新的目標訓練，得到可以偵測新目標的模型
+- 適用情況：
+  - 資料量太少
+  - 標註不易
+- 較常見的做法：Model fine-tuning
+  - 保留 Feature Extraction 相關的 layer
+  - 針對 Prediction 相關的 layer 訓練
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+
+
+## Domain in Azure Custom Vision
+
+- Azure Custom Vision 在影像分類和物件偵測上提供了不同領域的模型
+- Compact: 可以用在邊緣運算 (edge computing)
+
+| <font size=6>Domain Type</font>     | <font size=6>Domain Name</font>         | <font size=6>compact</font> |
+| ----------------------------------- | --------------------------------------- | --------------------------- |
+| <font size=5>ObjectDetection</font> | <font size=5>General</font>             | <font size=5>yes</font>     |
+| <font size=5>ObjectDetection</font> | <font size=5>Logo</font>                | <font size=5>no</font>      |
+| <font size=5>ObjectDetection</font> | <font size=5>Products on Shelves</font> | <font size=5>no</font>      |
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## Domain in Azure Custom Vision
+
+| <font size=6>Domain Type</font>    | <font size=6>Domain Name</font> | <font size=6>compact</font> |
+| ---------------------------------- | ------------------------------- | --------------------------- |
+| <font size=5>Classification</font> | <font size=5>General</font>     | <font size=5>yes</font>     |
+| <font size=5>Classification</font> | <font size=5>Food</font>        | <font size=5>yes</font>     |
+| <font size=5>Classification</font> | <font size=5>Landmarks</font>   | <font size=5>yes</font>     |
+| <font size=5>Classification</font> | <font size=5>Retail</font>      | <font size=5>yes</font>     |
+| <font size=5>Classification</font> | <font size=5>Adult</font>       | <font size=5>no</font>      |
+
+
+
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 資料集
+
+- Cognitive Services sample data files: https://tinyurl.com/y59t4g2n
+- 請使用 `git clone` 下載整個專案
+- 在 `CustomVision` 資料夾
+  - ImageClassification/Images
+    - Hemlock 鐵衫 
+    - Japanese Cherry 日本櫻
+  - ObjectDetection/Images
+    - fork
+    - scissors
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### Hemlock & Japanese Cherry
+
+| ![](media/hemlock_10.jpg) | ![](media/japanese_cherry_1.jpg) |
+| ------------------------- | -------------------------------- |
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### Image Processing- Augmentation
+
+#### 為了產生更多影像場景
+
+- rotation: 旋轉影像
+- scaling: 將影像放大縮小
+- translation: 將影像上下左右平移
+- horizontal flip: 水平翻轉影像
+- equalize: 影像均衡化
+- solarize: 影像過曝
+- pad to square: 將非正方形的影像外緣填補空白至正方形
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+##### translation
+
+![](media/image_translation.jpeg)
+
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+| <img src='media/image_caption.jpg' width=50%></img> | <img src='media/image_equalize.png' width=50%></img> |
+| :-------------------------------------------------: | :--------------------------------------------------: |
+|             <font size=5>origin</font>              |             <font size=5>equalize</font>             |
+|             ![](media/image_hist_1.png)             |             ![](media/image_hist_2.png)              |
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+##### solarize
+
+![](media/image_solarize.png)
+
+```
+p = 低於設定值的 pixel 值
+p = 255 - p
+```
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## Azure Custom Vision
+
+- 進入https://customvision.ai/
+- 用Azure 帳號登入
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## Image Classification
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### Config
+
+
+`image_classification_config.json`
+```
+{
+    "ENDPOINT": "<your endpoint>",
+    "training_key": "<your training key>",
+    "prediction_key": "<your prediction key>",
+    "prediction_resource_id": "<your prediction resource id>",
+    "publish_iteration_name": "<your iteration name>",
+    "project_name": "project name can be defined by yourself",
+    "label": [
+        "Hemlock",
+        "Japanese Cherry"
+    ],
+    "image_folder": "your image folder"
+}
+```
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### Parse Arguments
+
+把 configure 的路徑傳入程式
+```
+
+def parse_args():
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "-c",
+        "--config",
+        help="cofigure file path",
+        type=str,
+        default="image_classification_config.json",
+    )
+    args = parser.parse_args()
+    return args
+
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 基本設定
+
+- Training Client
+- Create a new project 
+
+```
+args = parse_args()
+config = json.load(open(args.config, "r"))
+credentials = ApiKeyCredentials(in_headers=\
+{"Training-key": config["training_key"]})
+trainer = CustomVisionTrainingClient(
+  config["ENDPOINT"], credentials)
+
+project = trainer.create_project(config["project_name"])
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 上傳影像與標註
+
+- 上傳影像：一次最多可以上傳 64 個影像
+- 給予標註
+
+```
+def add_image(label, image_folder, project_id, trainer):
+    image_list = []
+    image_tag = trainer.create_tag(project_id, label)
+    filenames = glob.glob(
+      os.path.join(image_folder, label, "*.jpg"))
+    for file_name in filenames:
+        with open(file_name, "rb") as image_contents:
+            image_list.append(
+                ImageFileCreateEntry(
+                    name=file_name,
+                    contents=image_contents.read(),
+                    tag_ids=[image_tag.id],
+                ))
+        image_contents.close()
+    return image_list
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+### 上傳影像與標註
+
+- 上傳影像後，確認影像上傳情況
+
+```
+image_folder = config["image_folder"]
+image_list = []
+for i in config["label"]:
+    image_list += add_image(
+      i, image_folder, project.id, trainer)
+upload_result = trainer.create_images_from_files(
+    project.id, ImageFileCreateBatch(images=image_list)
+)
+if not upload_result.is_batch_successful:
+    print("Image batch upload failed.")
+    for image in upload_result.images:
+        print("Image status: ", image.status)
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 模型訓練
+
+- 開始訓練，並檢查當前狀態
+- 將訓練好的模型部署成服務
+
+```
+iteration = trainer.train_project(project.id)
+while iteration.status != "Completed":
+    iteration = trainer.get_iteration(
+      project.id, iteration.id)
+    print("Training status: " + iteration.status)
+    time.sleep(1)
+
+publish_iteration_name = config["publish_iteration_name"]
+prediction_resource_id = config["prediction_resource_id"]
+trainer.publish_iteration(
+    project.id, iteration.id, 
+    publish_iteration_name, prediction_resource_id
+)
+```
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 預測
+
+- 取得project ID，以便使用影像分類的服務
+
+```
+def get_project_id(config):
+    credentials = ApiKeyCredentials(
+      in_headers={"Training-key": config["training_key"]})
+    trainer = CustomVisionTrainingClient(
+      config["ENDPOINT"], credentials)
+    project_id = next(
+        proj.id
+        for proj in trainer.get_projects()
+        if proj.name == config["project_name"]
+    )
+    return project_id
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 預測
+
+- Prediction Client
+
+```
+prediction_credentials = ApiKeyCredentials(
+        in_headers={
+          "Prediction-key": config["prediction_key"]}
+    )
+predictor = CustomVisionPredictionClient(
+  config["ENDPOINT"], prediction_credentials)
+project_id = get_project_id(config)
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 預測
+
+
+- 將圖檔以 binary 的方式讀檔，並透過已建立的服務做影像分類
+
+
+```
+with open(args.image, "rb") as image_contents:
+    results = predictor.classify_image(
+        project_id,
+        config["publish_iteration_name"],
+        image_contents.read(),
+    )
+    for prediction in results.predictions:
+        print(
+            "{0}: {1:.2f}%".format(
+                prediction.tag_name,
+                prediction.probability * 100
+            )
+        )
+image_contents.close()
+```
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## Object Detection
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### Config
+
+`object_detection_config.json`
+```
+{
+    "ENDPOINT": "<your endpoint>",
+    "training_key": "<your training key>",
+    "prediction_key": "<your prediction key>",
+    "prediction_resource_id": "<your prediction resource id>",
+    "publish_iteration_name": "<your iteration name>",
+    "project_name": "project name can be defined by yourself",
+    "annotation_file": "annotation.json",
+    "label": [
+        "fork",
+        "scissors"
+    ],
+    "image_folder": "your image folder"
+}
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+#### Annotation
+
+- <font size=5>標準化座標：標注物件的方框座標，以方框的左上角頂點座標和方框的寬與高表示。其中X座標與方框的寬會除以影像水平方向的像素長度，Y座標與方框的高會除以影像垂直方向的像素長度</font>
+
+
+```
+{
+  "<label>": {
+      "<file name>": [
+        <left>, <top>, <width>, <height>
+      ],
+      ...
+      ...},
+  "scissors": {
+      "scissors_1": [
+        0.4007353, 0.194068655, 0.259803921, 0.6617647
+      ],
+      ...,
+      ...,}
+}
+```
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+
+### 基本設定
+
+- Training Client
+- Find the <font color='#006DCE'>domain</font> ID of object detection
+- Create a new project 
+
+
+```
+args = parse_args()
+config = json.load(open(args.config, "r"))
+credentials = ApiKeyCredentials(i
+n_headers={"Training-key": config["training_key"]})
+trainer = CustomVisionTrainingClient(
+  config["ENDPOINT"], credentials)
+obj_detection_domain = next(
+    domain
+    for domain in trainer.get_domains()
+    if domain.type == "ObjectDetection" and \
+    domain.name == "General"
+)
+project = trainer.create_project(
+    config["project_name"], domain_id=obj_detection_domain.id
+)
+
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 上傳影像與標註
+
+- 上傳影像：一次最多可以上傳 64 個影像
+- 給予標註：物件名稱和方座標
+
+```
+def add_image(
+  trainer, label, project_id, annotation, image_folder):
+    tagged_images_with_regions = []
+    tag = trainer.create_tag(project_id, label)
+    for file_name in annotation.keys():
+        left, top, width, height = annotation[file_name]
+        regions = [
+            Region(tag_id=tag.id, 
+            left=left, top=top, width=width, height=height)
+        ]
+
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 上傳影像與標註
+
+接續上頁的code
+
+```
+        file_path = os.path.join(
+          image_folder, label, file_name + ".jpg")
+        with open(file_path, "rb") as image_contents:
+            tagged_images_with_regions.append(
+                ImageFileCreateEntry(
+                    name=file_name, 
+                    contents=image_contents.read(), 
+                    regions=regions
+                )
+            )
+        image_contents.close()
+    return tagged_images_with_regions
+```
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 上傳影像與標註
+
+```
+image_folder = config["image_folder"]
+annotations = json.load(open("annotation.json", "r"))
+tagged_images_with_regions = []
+for label in annotations.keys():
+    tagged_images_with_regions += add_image(
+        trainer, label, project.id, 
+        annotations[label], image_folder)
+upload_result = trainer.create_images_from_files(
+    project.id, 
+    ImageFileCreateBatch(images=tagged_images_with_regions)
+)
+if not upload_result.is_batch_successful:
+    print("Image batch upload failed.")
+    for image in upload_result.images:
+        print("Image status: ", image.status)
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+
+### 模型訓練
+
+- 開始訓練，並檢查當前狀態
+- 將訓練好的模型部署成服務
+
+```
+iteration = trainer.train_project(project.id)
+while iteration.status != "Completed":
+    iteration = trainer.get_iteration(
+      project.id, iteration.id)
+    print("Training status: " + iteration.status)
+    time.sleep(1)
+
+publish_iteration_name = config["publish_iteration_name"]
+prediction_resource_id = config["prediction_resource_id"]
+trainer.publish_iteration(
+    project.id, iteration.id, 
+    publish_iteration_name, prediction_resource_id
+)
+```
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+
+### 預測
+
+- 取得project ID，以便使用影像分類的服務
+
+```
+def get_project_id(config):
+    credentials = ApiKeyCredentials(
+      in_headers={"Training-key": config["training_key"]})
+    trainer = CustomVisionTrainingClient(
+      config["ENDPOINT"], credentials)
+    project_id = next(
+        proj.id
+        for proj in trainer.get_projects()
+        if proj.name == config["project_name"]
+    )
+    return project_id
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 預測
+
+- Prediction Client
+
+```
+prediction_credentials = ApiKeyCredentials(
+        in_headers={
+          "Prediction-key": config["prediction_key"]}
+    )
+predictor = CustomVisionPredictionClient(
+  config["ENDPOINT"], prediction_credentials)
+project_id = get_project_id(config)
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 預測
+
+
+- 將圖檔以 binary 的方式讀檔，並透過已建立的服務做物件偵測
+
+
+```
+with open(args.image, "rb") as image_contents:
+    results = predictor.classify_image(
+        project_id,
+        config["publish_iteration_name"],
+        image_contents.read(),
+    )
+image_contents.close()
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 預測
+
+準備圖檔
+
+
+```
+img = Image.open(args.image)
+draw = ImageDraw.Draw(img)
+font = ImageFont.truetype(
+    "../static/TaipeiSansTCBeta-Regular.ttf", 
+    size=int(5e-2 * img.size[1])
+)
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 預測
+
+- probability > 0.5
+- 需還原方框大小
+- 將結果畫出
+
+```
+for prediction in results.predictions:
+    if prediction.probability > 0.5:
+        bbox = prediction.bounding_box.as_dict()
+        left = bbox['left'] * img.size[0]
+        top = bbox['top'] * img.size[1]
+        right = left + bbox['width'] * img.size[0]
+        bot = top + bbox['height'] * img.size[1]
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 預測
+
+接續上頁的code
+```
+        draw.rectangle(
+          [left, top, right, bot], 
+          outline=(255, 0, 0), width=3)
+        draw.text(
+            [left, abs(top - 5e-2 * img.size[1])],
+            "{0} {1:0.2f}".format(
+                prediction.tag_name, 
+                prediction.probability * 100
+            ),
+            fill=(255, 0, 0),
+            font=font,
+        )
+img.show()
+```
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 預測
+
+
+![](media/object_detection.png)
+
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 參考資料
+- Custom Vision documentation: https://tinyurl.com/yy4vyvkw
+- 延伸閱讀
+  - Code-free automated machine learning for image classification: https://tinyurl.com/y3sechfv
+- 資料集
+  - [Open Image Dataset](https://storage.googleapis.com/openimages/web/visualizer/index.html)
+  - COCO Dataset: https://tinyurl.com/y3sechfv
+
+
+
+                  </script>
+                </section>
+              
+            </section>
+          
+        
+          
+            <section>
+                <section data-background-image="media/outline_12.png" data-background-size="100%"></section>
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+# Azure machine learning
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## Azure machine learning
+
+
+- 建立工作區 
+- 建立運算群組 
+- 上傳檔案
+- 執行實驗
+  - 訓練模型
+  - 註冊模型
+- 部署服務
+- 使用預測服務
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 確認 Subscription ID 
+#### (訂用帳戶 ID)
+
+```
+az account list
+```
+
+![](media/ml_1.png)
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 建立工作區 
+
+`create_workspace.py`
+```
+from azureml.core import Workspace
+
+work_space = Workspace.create(
+    name="mltibame",  # 工作區名稱
+    subscription_id="Your subscription ID",  
+    resource_group="Tibame",  # 資源群組名稱
+    create_resource_group=True,
+    location="eastus2",  
+    # example: 'eastus2', or 'southeastasia'.
+)
+
+# write out the workspace details to the file: 
+# .azureml/config.json
+work_space.write_config(path=".azureml")
+
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+### 建立工作區 
+
+
+<img src='media/ml_2.png' width=200%></img>
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 建立運算群組
+
+
+`create_compute.py`
+```
+from azureml.core import Workspace
+from azureml.core.compute import ComputeTarget, AmlCompute
+from azureml.core.compute_target import ComputeTargetException
+
+# 建立工作區後，可以從 .azureml/config.json 讀取工作區資訊
+work_space = Workspace.from_config()
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 建立運算群組
+
+`create_compute.py`
+```
+# 確認運算群組是否存在，否則直接建立運算群組
+cpu_cluster_name = "cpu-cluster"
+try:
+    cpu_cluster = ComputeTarget(
+      workspace=work_space, name=cpu_cluster_name)
+    print("Found existing cluster, use it.")
+except ComputeTargetException:
+    compute_config = AmlCompute.provisioning_configuration(
+        vm_size="STANDARD_D2_V2", max_nodes=4, 
+        idle_seconds_before_scaledown=2400
+    )
+    cpu_cluster = ComputeTarget.create(
+      work_space, cpu_cluster_name, compute_config)
+cpu_cluster.wait_for_completion(show_output=True)
+```
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 簡易測試
+`hello.py`
+```
+print("Hello, Azure!")
+```
+- 執行實驗時，需要兩個script
+  1. 一個在 Workspace 利用運算群組執行 `hello.py`
+  2. 另一個 script `run_experiment.py` 在本機執行，使 Workspace 開始執行上述的 script
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 簡易測試
+
+`run_experiment.py`
+```
+from azureml.core import (
+  Workspace, Experiment, ScriptRunConfig)
+work_space = Workspace.from_config()
+# 建立實驗
+experiment = Experiment(
+  workspace=work_space, name="hello-experiment")
+config = ScriptRunConfig(
+    source_directory=".",  # code放在哪個資料夾
+    script="hello.py",  # 要上傳的code
+    compute_target="cpu-cluster"
+)
+run = experiment.submit(config)
+aml_url = run.get_portal_url()
+print(aml_url) # 此連結可以看到 log
+run.wait_for_completion(show_output=True) # 過程中的紀錄都會列出
+```
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 上傳檔案
+
+- MNIST handwritten digits Database 
+  - http://yann.lecun.com/exdb/mnist/
+  - Image of 28 * 28 pixles
+  - Binary data
+  - The labels values are 0 to 9
+  - Training data: 60000 images
+  - Testing data: 10000 images 
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 上傳檔案
+
+`upload_file.py`
+
+```
+import argparse
+from azureml.core import Workspace, Dataset
+def parse_args():
+    parser = argparse.ArgumentParser()
+# 在本機的資料夾
+    parser.add_argument(
+      "-f", "--folder", help="file folder", type=str) 
+# 上傳到 datastore 的資料夾位置
+    parser.add_argument(
+        "-t", "--target_path", 
+        help="file folder in datastore", type=str)
+    parser.add_argument(
+      "-n", "--dataname", help="name of dataset", type=str)
+    args = parser.parse_args()
+    return args
+```
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 上傳檔案
+
+`upload_file.py`
+
+```
+work_space = Workspace.from_config()
+args = parse_args()
+datastore = work_space.get_default_datastore()
+datastore.upload(
+  src_dir=args.folder, 
+  target_path=args.target_path,
+  overwrite=True)
+dataset = Dataset.File.from_files(
+  path=(datastore, args.target_path))
+dataset.register(work_space, name=args.dataname)
+```
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 上傳檔案
+
+<img src='media/ml_3.png' width=200%></img>
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 執行實驗
+
+- 在 Workspace 上執行 `train_keras.py`
+- 在本機執行 `run_experiment_training.py`
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 執行實驗
+
+`train_keras.py`
+```
+# 讀 MNIST 圖檔
+def load_image(path):
+    f = gzip.open(path, "r")
+    image_size = 28
+# 前面的16位元是檔案的描述，第17位元開始才是圖檔
+    f.read(16)
+    buf = f.read()
+    data = np.frombuffer(
+      buf, dtype=np.uint8).astype(np.float32)
+    data = data.reshape(
+      int(data.shape[0] / 28 / 28), image_size, image_size, 1)
+    f.close()
+    return data
+```
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 執行實驗
+
+`train_keras.py`
+```
+# 讀 MNIST label
+def load_label(path):
+    """
+    Load label
+    """
+    f_p = gzip.open(path, "r")
+# 前面的8位元是檔案的描述，第9位元開始才是label
+    f_p.read(8)
+    buf = f_p.read()
+    data = np.frombuffer(
+      buf, dtype=np.uint8).astype(np.int8)
+    f_p.close()
+    return data
+```
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 執行實驗
+`train_keras.py`
+```
+def parse_args():
+    """
+    Parse Arguments
+    """
+    parser = argparse.ArgumentParser()
+# 在 Azure ML 放data的資料夾
+    parser.add_argument(
+      "--data_folder", type=str, 
+      help="Path to the training data")
+# 為了 Tensorboard，在 Azure ML 放log的資料夾
+    parser.add_argument(
+        "--log_folder", type=str, 
+        help="Path to the log", default="./logs")
+    args = parser.parse_args()
+    return args
+```
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 執行實驗
+
+`train_keras.py`
+```
+args = parse_args()
+# 取得執行實驗時的當下狀態
+run = Run.get_context()
+# Load mnist data
+train_image = load_image(
+    os.path.join(args.data_folder, 
+    "train-images-idx3-ubyte.gz")
+)
+train_label = load_label(
+    os.path.join(args.data_folder, 
+    "train-labels-idx1-ubyte.gz")
+)
+# Normalize 到 0 ~ 1
+train_image /= 255
+train_label = to_categorical(train_label)
+```
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+### 執行實驗
+
+`train_keras.py`
+```
+# LeNet
+
+input_layer = Input(shape=(28, 28, 1))
+layers = Conv2D(
+  filters=6, kernel_size=(5, 5), 
+  activation="tanh")(input_layer)
+layers = MaxPooling2D(pool_size=(2, 2))(layers)
+layers = Conv2D(
+  filters=16, kernel_size=(5, 5),
+  activation="tanh")(layers)
+layers = MaxPooling2D(pool_size=(2, 2))(layers)
+layers = Flatten()(layers)
+layers = Dense(120, activation="tanh")(layers)
+layers = Dense(84, activation="tanh")(layers)
+output = Dense(10, activation="softmax")(layers)
+```
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+### 執行實驗
+
+`train_keras.py`
+```
+# LeNet
+
+model = Model(inputs=input_layer, outputs=output)
+model.compile(
+    optimizer="adam", loss="categorical_crossentropy", 
+    metrics=["accuracy"]
+)
+```
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 執行實驗
+
+
+<img src='media/ml_4.png' width=20%></img> ![](media/ml_5.png)
+
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 執行實驗
+
+`train_keras.py`
+```
+# Tensorboard- 觀察訓練過程，把觀察值記錄在 Log Folder
+tb_callback = TensorBoard(
+    log_dir=args.log_folder,
+    histogram_freq=0,
+    write_graph=True,
+    write_images=True,
+    embeddings_freq=0,
+    embeddings_layer_names=None,
+    embeddings_metadata=None,
+)
+```
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+### 執行實驗
+
+`train_keras.py`
+```
+# train the network- 把訓練過程中的觀察值記錄下來
+history_callback = model.fit(
+    train_image,
+    train_label,
+    epochs=10,
+    validation_split=0.2,
+    batch_size=10,
+    callbacks=[tb_callback],
+)
+```
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+### 執行實驗
+
+`train_keras.py`
+
+```
+# ouput log- 把觀察值傳給 Workspace
+run.log_list("train_loss", history_callback.history["loss"])
+run.log_list("train_accuracy", history_callback.history["accuracy"])
+run.log_list("val_loss", history_callback.history["val_loss"])
+run.log_list("val_accuracy", history_callback.history["val_accuracy"])
+
+print("Finished Training")
+# 模型只能放在 outputs 資料夾
+model.save("outputs/keras_lenet.h5")
+print("Saved Model")
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 執行實驗
+`run_experiment_training.py`
+```
+import azureml
+from azureml.core import (
+  ScriptRunConfig, Dataset, 
+  Workspace, Experiment, Environment)
+from azureml.core.conda_dependencies import CondaDependencies
+from azureml.core.model import Model
+work_space = Workspace.from_config()
+
+# 設定 dataset folder
+datastore = work_space.get_default_datastore()
+dataset = Dataset.File.from_files(
+  path=(datastore, "datasets/mnist"))
+
+```
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+### 執行實驗
+`run_experiment_training.py`
+```
+# 設定用來訓練模型的實驗
+experiment = Experiment(
+  workspace=work_space, name="keras-lenet-train")
+# 每次上傳code時， Workspace 會跟本機的資料夾同步
+# 若本機的資料夾檔案太大，可做以下設定，最多 2 Gb 
+azureml._restclient.snapshots_client.SNAPSHOT_MAX_SIZE_BYTES=\
+ 2000000000
+config = ScriptRunConfig(
+    source_directory=".",
+    script="train_keras.py",
+    compute_target="cpu-cluster",
+    arguments=[
+        "--data_path",
+        dataset.as_named_input("input").as_mount()])
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+### 執行實驗
+`run_experiment_training.py`
+```
+
+# 設定環境：安裝所需套件
+environment = Environment("keras-environment")
+environment.python.conda_dependencies = \
+CondaDependencies.create(
+    pip_packages=[
+      "azureml-defaults", 
+      "numpy", 
+      "tensorflow==2.3.1"]
+)
+config.run_config.environment = environment
+
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 執行實驗
+
+`run_experiment_training.py`
+```
+# 執行實驗，開始訓練模型
+run = experiment.submit(config)
+aml_url = run.get_portal_url()
+print(aml_url)
+
+# tensorboard 呈現
+tboard = Tensorboard([run])
+tboard.start(start_browser=True)
+run.wait_for_completion(show_output=True)
+tboard.stop()
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 執行實驗
+`run_experiment_training.py`
+```
+# 註冊模型
+metrics = run.get_metrics()
+run.register_model(
+    model_name="keras_mnist",
+    tags={"data": "mnist", "model": "classification"},
+    model_path="outputs/keras_lenet.h5",
+    model_framework=Model.Framework.TENSORFLOW,
+    model_framework_version="2.3.1",
+# 紀錄最後一個epoch的觀察值
+    properties={
+        "train_loss": metrics["train_loss"][-1],
+        "train_accuracy": metrics["train_accuracy"][-1],
+        "val_loss": metrics["val_loss"][-1],
+        "val_accuracy": metrics["val_accuracy"][-1]})
+```
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 執行實驗
+
+#### Tensorboard
+
+| ![](media/ml_8.png) | ![](media/ml_9.png) |
+| ------------------- | ------------------- |
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+### 部署服務
+
+- 部署服務時，需要兩個script
+  1. 一個在 Workspace 利用運算群組執行 `score_keras.py`
+  2. 另一個 script `deploy_service.py` 在本機執行，將預測的服務在 Workspace 部署
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+
+### 部署服務
+
+`score_keras.py`
+```
+import os
+import json
+import numpy as np
+from tensorflow.keras.models import load_model
+def init(): 
+    global model
+# 從預設位置讀取模型
+    model_path = os.path.join(
+      os.getenv("AZUREML_MODEL_DIR"), "keras_lenet.h5")
+    model = load_model(model_path)
+def run(raw_data): 
+    data = json.loads(raw_data)["data"]
+    data = np.array(data).reshape((1, 28, 28, 1))
+    y_hat = model.predict(data)
+    return float(np.argmax(y_hat))
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 部署服務
+
+`deploy_service.py`
+
+```
+import numpy as np
+from azureml.core import Environment, Model, Workspace
+from azureml.core.conda_dependencies import CondaDependencies
+from azureml.core.model import InferenceConfig
+from azureml.core.webservice import AciWebservice
+
+work_space = Workspace.from_config()
+# 設定服務環境
+environment = Environment("keras-service-environment")
+environment.python.conda_dependencies = \
+CondaDependencies.create(
+   python_version="3.7.7",
+   pip_packages=[
+     "azureml-defaults", "numpy", "tensorflow==2.3.1"])
+
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 部署服務
+
+`deploy_service.py`
+
+```
+model = Model(work_space, "keras_mnist")
+model_list = model.list(work_space)
+# 找出 Validation Accuracy 最高的模型
+validation_accuracy = []
+version = []
+for i in model_list:
+   validation_accuracy.append(
+     float(i.properties["val_accuracy"]))
+   version.append(i.version)
+model = Model(
+   work_space, "keras_mnist", 
+   version=version[np.argmax(validation_accuracy)]
+)
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 部署服務
+
+`deploy_service.py`
+
+```
+service_name = "keras-mnist-service"
+inference_config = InferenceConfig(
+    entry_script="score_keras.py", environment=environment
+)
+# 設定運算時需要的 CPU 和 記憶體
+aci_config = AciWebservice.deploy_configuration(
+  cpu_cores=1, memory_gb=1)
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+### 部署服務
+`deploy_service.py`
+
+```
+# 部署服務
+service = Model.deploy(
+    workspace=work_space,
+    name=service_name,
+    models=[model],
+    inference_config=inference_config,
+    deployment_config=aci_config,
+    overwrite=True,)
+service.wait_for_deployment(show_output=True)
+print(service.get_logs()) # 部署失敗的話，可以檢查 log
+print(work_space.webservices) # 確認已部署服務
+ ```
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 使用預測服務
+
+
+`predict_mnist_azml.py`
+```
+import argparse
+import gzip
+import json
+import os
+import requests
+import numpy as np
+from PIL import Image
+args = parse_args()
+# 讀取 MNIST test images
+test_image = load_image(os.path.join(
+  args.data_folder, "t10k-images-idx3-ubyte.gz"))
+test_image /= 255
+# 隨機挑選一張圖
+testing_num = np.random.randint(
+  low=0, high=len(test_image) - 1)
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+### 使用預測服務
+
+`predict_mnist_azml.py`
+```
+# 轉換浮點數成 JSON 字串
+data = {"data": test_image[testing_num].tolist()}
+input_data = json.dumps(data)
+# Set the content type
+headers = {"Content-Type": "application/json"}
+# 透過 POST 訪問之前部署的服務
+resp = requests.post(
+  args.endpoint_url, input_data, headers=headers)
+ans = resp.text.replace("[", "").replace("]", "").split(", ")
+ans = int(float(ans[0]))
+print("The answer is {}".format(ans))
+array = np.reshape(test_image[testing_num] * 255, (28, 28))
+img = Image.fromarray(array)
+img.show()
+```
+
+
+                  </script>
+                </section>
+              
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+### 使用預測服務
+
+`predict_mnist_azml.py`
+```
+# 如果要存成圖檔，必須先轉成 RGB 格式
+img = img.convert("RGB")
+img.save("output.png")
+
+```
+
+![](media/ml_7.png)
+![](media/ml_6.png)
+                  </script>
+                </section>
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 參考資料
+- Azure Machine Learning documentation: https://tinyurl.com/yxzjslm5
+  - Jupyter Notebook: https://tinyurl.com/r934vbp
+  - Automated ML: https://tinyurl.com/y4koj4f2
+  - Model Management: https://tinyurl.com/tf8w7cn
+
+
+
+                  </script>
+                </section>              
+            </section>
+          
+        
+      </div>
+
+    </div>
+
+    <!-- Scripts loaded after the content -->
+    <script src="static/revealjs/lib/js/head.min.js"></script>
+    <script src="static/revealjs/js/reveal.js"></script>
+
+    <script>
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          // Cross-browser shim that fully implements classList - https://github.com/eligrey/classList.js/
+          { src: 'static/revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+
+          // Interpret Markdown in <section> elements
+          { src: 'static/revealjs/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'static/revealjs/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+
+          // Syntax highlight for <code> elements
+          { src: 'static/revealjs/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+
+          // Zoom in and out with Alt+click
+          { src: 'static/revealjs/plugin/zoom-js/zoom.js', async: true },
+
+          // Speaker notes
+          { src: 'static/revealjs/plugin/notes/notes.js', async: true },
+
+          // MathJax
+          { src: 'static/revealjs/plugin/math/math.js', async: true }
+        ]
+      });
+
+      Reveal.configure({"autoSlide": 0, "autoSlideStoppable": true, "backgroundTransition": "convex", "center": true, "controls": false, "embedded": false, "fragments": true, "help": true, "hideAddressBar": true, "history": true, "keyboard": true, "loop": false, "mouseWheel": false, "overview": true, "parallaxBackgroundHorizontal": 0, "parallaxBackgroundVertical": 0, "pdfMaxPagesPerSlide": 1, "previewLinks": false, "progress": true, "rtl": false, "showNotes": false, "slideNumber": true, "touch": true, "transition": "linear", "transitionSpeed": "default", "viewDistance": 3});
+    </script>
+  </body>
+</html>
