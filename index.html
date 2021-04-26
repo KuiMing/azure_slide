@@ -1855,7 +1855,186 @@ ssh root@127.0.0.1 -p 57281
               
             </section>
           
-        
+            <section>
+              
+              <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                <script type="text/template">
+                  
+
+# Heroku
+## App Service
+
+方便部署服務
+
+
+                </script>
+              </section>
+            
+              <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                <script type="text/template">
+                  
+
+## 申請Heroku帳號
+1. 進入https://id.heroku.com/login
+2. 點選<font color='#5F4B83'>*sign up*</font>
+3. 填完基本資料，依照步驟申請帳號
+4. 密碼長度必須至少為 8 個字元，包含下列元素：字母大寫與小寫、數字及符號
+
+
+
+                </script>
+              </section>
+              <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                <script type="text/template">
+                  
+
+## Create New App
+
+4. 點選右上角的<font color='#5F4B83'>*New*</font>，並選擇<font color='#5F4B83'>*Create New App*</font>
+5. 為自己的APP命名
+6. Click <font color='#5F4B83'>*Create app*</font>
+
+
+
+                </script>
+              </section>              
+              <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                <script type="text/template">
+                  
+
+## Deploy using Heroku Git
+
+
+                </script>
+              </section>
+            
+              <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                <script type="text/template">
+                  
+
+### heroku CLI
+
+```
+# 在終端機中輸入
+sudo snap install --classic heroku
+```
+```
+# 登入heroku
+heroku login
+```
+
+
+
+                </script>
+              </section>
+            
+              <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                <script type="text/template">
+                  
+
+### Heroku Git
+
+```
+# 進入自己的資料夾
+cd your-project/
+```
+
+```
+# 用 git 連結 Heroku
+heroku git:remote -a <your app name>
+```
+
+```
+# 或者，直接到Settings，找到Heroku git URL
+git remote add <your Heroku git URL>
+```
+
+
+                </script>
+              </section>
+            
+              <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                <script type="text/template">
+                  
+
+### 部署服務
+
+```
+git push azure heroku
+```
+
+
+                </script>
+              </section>
+            
+              <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                <script type="text/template">
+                  
+
+## 基本 Heroku 語法
+
+
+                </script>
+              </section>
+            
+              <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                <script type="text/template">
+                  
+
+### 查看 Heroku App log
+
+```
+# 列出最近的log
+heroku logs
+```
+
+```
+# 持續觀察log
+heroku logs --tail
+```
+
+
+                </script>
+              </section>
+            
+              <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                <script type="text/template">
+                  
+
+### Heroku 環境變數
+
+```
+# 檢查目前已經設定的環境變數
+heroku config
+```
+```
+# 設定環境變數
+heroku config:set <environment variable name>=<your value>
+
+```
+
+
+                </script>
+              </section>
+              <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                <script type="text/template">
+                  
+
+### 進入 heroku 的環境
+
+```
+heroku run bash
+```
+- 進入 heroku 之後，Linux的指令都能使用
+- 可以在此環境測試或debug
+- 退出此環境後，環境會自動復原
+
+
+                </script>
+              </section>              
+      
+            
+          </section>        
           
             <section>
                 <section data-background-image="media/outline_6.png" data-background-size="100%"></section>
@@ -2026,7 +2205,7 @@ def callback():
 - 找到Webhook URL
   - 點擊Edit
   - 填上 Azure Web APP 的 URL 加上 <font color='#00BD3C'>/callback</font>
-    - example: https://<YOUR WEB APP NAME>.azurewebsites.net/callback
+    - example: https://YOUR-WEB-APP-NAME.azurewebsites.net/callback
   - 點擊Verify
 - 開啟 <font color='#00BD3C'>Use Webhook</font>
 
