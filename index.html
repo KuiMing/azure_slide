@@ -96,7 +96,7 @@
 5. 按下*開始免費使用*
 6. 填妥信用卡資訊
    - 免費使用階段不扣款，主動升級才會扣款
-   - 一開始可免費使用30天，並有大約100美金的credit
+   - 一開始可免費使用30天，並有大約6100台幣的credit
 
                   </script>
                 </section>
@@ -1733,10 +1733,6 @@ git pull origin master
 # 在終端機中輸入
 az webapp deployment user set \
 --user-name <username> --password <password>
-
-# 取得在Azure Web App內的git url
-az webapp deployment source config-local-git \
---name <webappname> --resource-group <yourResourceGroup>
 ```
 
 - 使用者名稱在 Azure 服務及本機 Git 推送中都必須是唯一的，且不能包含 ‘@’ 符號。
@@ -2069,7 +2065,7 @@ heroku run bash
                     
 
 ## 建立 Messaging API channel
-- 進入 https://account.line.biz/login
+- 進入[Line Developers](https://account.line.biz/login?redirectUri=https%3A%2F%2Fdevelopers.line.biz%2Fconsole%2F)
 - 使用 LINE 帳號登入
 - 找到 Providers
   - 按下 Create 
@@ -2953,7 +2949,7 @@ face_client.person_group.create(
 ### 在Person Group中新增一人
 
 ```
-preson = face_client.person_group_person.create(
+person = face_client.person_group_person.create(
   PERSON_GROUP_ID, "Benjamin")
 ```
 
@@ -3216,7 +3212,7 @@ az webapp create-remote-connection \
 ```
 
 ```
-scp -p 57281 config.json root@127.0.0.1:/home/config.json
+scp -P 57281 config.json root@127.0.0.1:/home/config.json
 ```
 
 
@@ -3788,6 +3784,19 @@ p = 255 - p
 
                   </script>
                 </section>
+                <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
+                  <script type="text/template">
+                    
+
+## 申請Azure Custom Vision
+
+![](media/custom_1.png)
+
+
+
+
+                  </script>
+                </section>
               
                 <section data-markdown data-background-image="media/tibame.png" data-background-size="100%">
                   <script type="text/template">
@@ -3797,6 +3806,8 @@ p = 255 - p
 
 - 進入https://customvision.ai/
 - 用Azure 帳號登入
+- 點選右上角的齒輪
+- 分別複製 Training 和 Prediction 的 Key 和 Endpoint
 
 
                   </script>
